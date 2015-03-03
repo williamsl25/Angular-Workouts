@@ -1,0 +1,15 @@
+%h1 Welcome#index
+= link_to 'Workouts', workouts_path
+%div{ 'ng-controller':  'indexCtrl' }
+  {{ some_text.workout }} - {{ some_text.workoutTrainer }}
+  %br
+  %button{ 'ng-click': 'changeWorkout()' } Add New Workout
+  %ul
+    %li{ 'ng-repeat': 'workout in workouts.workouts' }
+      / .workouts will shove the array of workouts into the controller - you call it here to see it on the page
+      {{ workout.workout }} - {{ workout.workout_trainer }}
+      %button{ 'ng-click': 'deleteWorkout(workout.id)' } Delete
+  %form{'ng-submit': "submitForm()"}
+    %input{type: "text", placeholder: 'Workout', 'ng-model': 'formWorkout'}
+    %input{type: "text", placeholder: 'Workout Trainer', 'ng-model': 'formWorkoutTrainer'}
+    %input{type: "submit"}
