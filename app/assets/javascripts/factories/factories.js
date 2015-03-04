@@ -1,4 +1,4 @@
-angularWorkouts.factory('workoutData', function($http) {
+workoutList.factory('workoutData', function($http) {
   workoutData = {
     data: {
       workouts: [

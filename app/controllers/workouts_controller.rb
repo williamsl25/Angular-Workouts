@@ -2,31 +2,38 @@ class WorkoutsController < ApplicationController
   
   def index
     @workouts = Workout.all
+    respond_to do |format|
+      format.json {render json: @workouts }
+    end
   end
 
   def new
     @workout = Workout.new
+    respond_to do |format|
+      format.json {render json: @workout }
+    end
   end
 
   def show
     @workout = Workout.find params[:id]
+    respond_to do |format|
+      format.json {render json: @workout }
+    end
   end
 
   def edit
     @workout = Workout.find params[:id]
-    render :json
+    respond_to do |format|
+      format.json {render json: @workout }
+    end
   end
 
   def create
-    @workout = Workout.create workout_params
+    @workout = Workout.new workout_params
+    @workout.save
     respond_to do |format|
-      if @workout.save
-        format.html { redirect_to @workout, notice: 'workout was successfully created.' }
-        format.json { render :show, status: :created, location: @workout }
-      else
-        format.html { render :new }
-        format.json { render json: @workout.errors, status: :unprocessable_entity }
-      end
+        format.json { render json: @workout }
+      
     end
   end
 
@@ -34,21 +41,15 @@ class WorkoutsController < ApplicationController
     @workout = Workout.find params[:id]
     @workout.destroy
     respond_to do |format|
-      format.html {redirect_to workouts_url, notice: 'Workout was successfully destroyed.' }
       format.json{ head :no_content }
     end
   end
 
   def update
     @workout = Workout.find params[:id]
+    @workout.update(workout_params)
     respond_to do |format|
-      if @workout.update(workout_params)
-        format.html { redirect_to @workout, notice: 'workout was successfully updated.' }
-        format.json { render :show, status: :ok, location: @workout }
-      else
-        format.html { render :edit }
-        format.json { render json: @workout.errors, status: :unprocessable_entity }
-      end
+      format.json { render json: @workout }
     end
   end
 

@@ -1,4 +1,4 @@
-var indexCtrl = angularWorkouts.controller('indexCtrl', function($scope, workoutData) {
+var indexCtrl = workoutList.controller('indexCtrl', function($scope, workoutData) {
     $scope.some_text = {workout: "Yoga", workoutTrainer: "Jillian Michaels"}; 
 
     $scope.workouts = workoutData.data;
@@ -41,7 +41,8 @@ var indexCtrl = angularWorkouts.controller('indexCtrl', function($scope, workout
 
     $scope.editWorkout = function(workout) {
     $scope.formWorkout = workout.workout
-    $scope.formWorkoutPhone = workout.trainer
+    $scope.formWorkoutTrainer = workout.trainer
+    // *when I edit, only the workout is displayed not the trainer
     
     // console.log(workout)
     $scope.submitForm = function() {

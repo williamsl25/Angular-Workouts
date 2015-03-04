@@ -1,2 +1,21 @@
-%h1 Workouts#index
-%p Find me in app/views/workouts/index.html.haml
+%h1 List of Workouts
+
+%table
+  %thead
+    %tr
+      %th workout
+      %th workout trainer
+      
+      
+  %tbody
+    - @workouts.each do |workout|
+      %tr
+        %td= workout.workout
+        %td= workout.workout_trainer
+        
+        %td= link_to 'Edit', edit_workout_path(workout)
+        %td= link_to 'Destroy', workout, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New workout', new_workout_path
